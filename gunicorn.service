@@ -3,10 +3,12 @@ Description=Gunicorn service for my app
 After=network.target
 
 [Service]
-User=username
-Group=groupname
+User=ubuntu
+Group=ubuntu
 WorkingDirectory=/opt/human-features
 ExecStart=/opt/human-features/start_gunicorn.sh
+StandardOutput=inherit
+StandardError=inherit
 
 [Install]
 WantedBy=multi-user.target

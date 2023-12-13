@@ -2,7 +2,7 @@
 
 ## EC2 Instance
 
-g4dn.xlarge
+g4dn.xlarge ubuntu instance
 
 ## Installation
 
@@ -21,6 +21,7 @@ pip install -r requirements.txt
 
 sudo cp /opt/human-features/my_nginx_app /etc/nginx/sites-available/my_nginx_app
 sudo ln -s /etc/nginx/sites-available/my_nginx_app /etc/nginx/sites-enabled
+sudo rm /etc/nginx/sites-enabled/default
 sudo systemctl restart nginx
 
 sudo cp /opt/human-features/gunicorn.service /etc/systemd/system/gunicorn.service

@@ -8,21 +8,26 @@ g4dn.xlarge
 
 ```
 sudo apt update
-sudo apt install nginx git software-properties-common
+sudo apt install -y nginx git software-properties-common python3-pip
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
-sudo apt install python3.8
+sudo apt install -y python3.8
 
 sudo mkdir -p /opt/human-features
+sudo chown ubuntu:ubuntu /opt/human-features/
 git clone https://github.com/FilterOff/human-features-ec2.git /opt/human-features
+cd /opt/human-features
+pip install -r requirements.txt
 
-cp my_nginx_app /etc/nginx/sites-available/my_nginx_app
+sudo cp /opt/human-features/my_nginx_app /etc/nginx/sites-available/my_nginx_app
 sudo ln -s /etc/nginx/sites-available/my_nginx_app /etc/nginx/sites-enabled
 sudo systemctl restart nginx
 
-cp /opt/human-features/gunicorn.service /etc/systemd/system/gunicorn.service
-systemctl enable gunicorn.service
-systemctl start gunicorn.service
+sudo cp /opt/human-features/gunicorn.service /etc/systemd/system/gunicorn.service
+sudo systemctl enable gunicorn.service
+sudo systemctl start gunicorn.service
+
+# sudo journalctl -u gunicorn.service
 
 ```
 

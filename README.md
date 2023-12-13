@@ -19,12 +19,12 @@ git clone https://github.com/FilterOff/human-features-ec2.git /opt/human-feature
 cd /opt/human-features
 pip install -r requirements.txt
 
-sudo cp /opt/human-features/my_nginx_app /etc/nginx/sites-available/my_nginx_app
+sudo mv /opt/human-features/my_nginx_app /etc/nginx/sites-available/my_nginx_app
 sudo ln -s /etc/nginx/sites-available/my_nginx_app /etc/nginx/sites-enabled
 sudo rm /etc/nginx/sites-enabled/default
 sudo systemctl restart nginx
 
-sudo cp /opt/human-features/gunicorn.service /etc/systemd/system/gunicorn.service
+sudo mv /opt/human-features/gunicorn.service /etc/systemd/system/gunicorn.service
 sudo systemctl enable gunicorn.service
 sudo systemctl start gunicorn.service
 

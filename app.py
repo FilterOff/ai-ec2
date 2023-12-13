@@ -1,5 +1,6 @@
 # https://huggingface.co/Salesforce/blip-vqa-base
 import os
+import torch
 from pathlib import Path
 from flask import Flask, request, jsonify
 from PIL import Image
@@ -11,6 +12,8 @@ path = Path(__file__).parent
 
 processor = BlipProcessor.from_pretrained("Salesforce/blip-vqa-base")
 model = BlipForQuestionAnswering.from_pretrained("Salesforce/blip-vqa-base")
+if torch.cuda.is_available():
+    model = model.cuda()
 
 dataset = [
     {

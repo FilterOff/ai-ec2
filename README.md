@@ -8,10 +8,16 @@ g4dn.xlarge ubuntu instance
 
 ```
 sudo apt update
-sudo apt install -y nginx git software-properties-common python3-pip
+sudo apt install -y nginx git software-properties-common python3-pip build-essential dkms ubuntu-drivers-common
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
 sudo apt install -y python3.8
+
+# install nvidia drivers
+sudo ubuntu-drivers autoinstall
+
+# verify nvidia drivers
+nvidia-smi
 
 sudo mkdir -p /opt/human-features
 sudo chown ubuntu:ubuntu /opt/human-features/
@@ -28,7 +34,7 @@ sudo mv /opt/human-features/gunicorn.service /etc/systemd/system/gunicorn.servic
 sudo systemctl enable gunicorn.service
 sudo systemctl start gunicorn.service
 
-# sudo journalctl -u gunicorn.service
+# sudo journalctl -f -u gunicorn.service
 
 ```
 

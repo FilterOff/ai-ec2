@@ -1,7 +1,7 @@
 server {
     listen 80;
 
-    location /human-features {
+    location /human-features/ {
         proxy_pass http://localhost:8080;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -9,7 +9,7 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-     location /chubby {
+     location /chubby/ {
         proxy_pass http://localhost:8081;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -17,3 +17,4 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
+

@@ -53,3 +53,9 @@ crontab -e
 ```
 @reboot sleep 3600 && sudo shutdown now
 ```
+
+## Usage
+
+```
+curl -X POST -F "file=@/Users/bw/Desktop/1.jpg" http://44.210.160.189/chubby/predict
+```

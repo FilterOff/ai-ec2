@@ -1,12 +1,12 @@
 [Unit]
-Description=Gunicorn service for my app
+Description=Gunicorn service for Chubby
 After=network.target
 
 [Service]
 User=ubuntu
 Group=ubuntu
-WorkingDirectory=/opt/human-features
-ExecStart=/opt/human-features/start_gunicorn.sh
+WorkingDirectory=/opt/chubby
+ExecStart=/opt/chubby/start_gunicorn.sh
 StandardOutput=inherit
 StandardError=inherit
 

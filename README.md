@@ -20,21 +20,26 @@ sudo ubuntu-drivers autoinstall
 nvidia-smi
 
 sudo mkdir -p /opt/human-features
+git clone https://github.com/FilterOff/ai-ec2.git /opt
 sudo chown ubuntu:ubuntu /opt/human-features/
-git clone https://github.com/FilterOff/human-features-ec2.git /opt/human-features
-cd /opt/human-features
-pip install -r requirements.txt
+sudo chown ubuntu:ubuntu /opt/chubby/
+pip install -r /opt/human-features/requirements.txt
+pip install -r /opt/chubby/requirements.txt
 
-sudo mv /opt/human-features/my_nginx_app /etc/nginx/sites-available/my_nginx_app
+sudo mv /opt/my_nginx_app /etc/nginx/sites-available/my_nginx_app
 sudo ln -s /etc/nginx/sites-available/my_nginx_app /etc/nginx/sites-enabled
 sudo rm /etc/nginx/sites-enabled/default
 sudo systemctl restart nginx
 
-sudo mv /opt/human-features/gunicorn.service /etc/systemd/system/gunicorn.service
-sudo systemctl enable gunicorn.service
-sudo systemctl start gunicorn.service
+sudo mv /opt/humanfeatures.service /etc/systemd/system/humanfeatures.service
+sudo systemctl enable humanfeatures.service
+sudo systemctl start humanfeatures.service
 
-# sudo journalctl -f -u gunicorn.service
+sudo mv /opt/chubby.service /etc/systemd/system/chubby.service
+sudo systemctl enable chubby.service
+sudo systemctl start chubby.service
+
+# sudo journalctl -f -u humanfeatures.service
 
 ```
 

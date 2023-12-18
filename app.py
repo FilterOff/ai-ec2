@@ -58,6 +58,16 @@ dataset = [
         "question": "Is this person bald?",
         "key": "bald",
         "value": "yes"
+    },
+    {
+        "question": "Does this person have curly hair?",
+        "key": "curly_hair",
+        "value": "yes"
+    }, 
+    {
+        "question": "Does this person look athletic?",
+        "key": "athletic",
+        "value": "yes"
     }, 
 ]
 
@@ -82,6 +92,8 @@ def predict():
             value = item['value'] if 'value' in item else None
 
             inputs = processor(img, question, return_tensors="pt")
+            if torch.cuda.is_available():
+                inputs = {k: v.cuda() for k, v in inputs.items()}  # Move inputs to GPU
 
             out = model.generate(**inputs)
             response = processor.decode(out[0], skip_special_tokens=True)

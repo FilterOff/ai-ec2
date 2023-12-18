@@ -19,7 +19,6 @@ sudo ubuntu-drivers autoinstall
 # verify nvidia drivers
 nvidia-smi
 
-sudo mkdir -p /opt/human-features
 git clone https://github.com/FilterOff/ai-ec2.git /opt
 sudo chown ubuntu:ubuntu /opt/human-features/
 sudo chown ubuntu:ubuntu /opt/chubby/
@@ -39,7 +38,11 @@ sudo mv /opt/chubby.service /etc/systemd/system/chubby.service
 sudo systemctl enable chubby.service
 sudo systemctl start chubby.service
 
-# sudo journalctl -f -u humanfeatures.service
+echo "**************************************************************************"
+echo "Make sure you change out os.environ.get('MODEL_URL') in /opt/chubby/app.py"
+echo "**************************************************************************"
+
+sudo journalctl -f -u humanfeatures.service
 
 ```
 
